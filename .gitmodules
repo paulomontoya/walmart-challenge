@@ -1,0 +1,6 @@
+[submodule "walmart-challenge-front"]
+	path = walmart-challenge-front
+	url = git@github.com:paulomontoya/walmart-challenge-front.git
+[submodule "walmart-challenge-back"]
+	path = walmart-challenge-back
+	url = git@github.com:paulomontoya/walmart-challenge-back.git
