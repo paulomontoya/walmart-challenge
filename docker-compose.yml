@@ -13,7 +13,7 @@ services:
     networks:
       - nextjs-express
     environment: 
-      - NODE_PORT=4000
+      - PORT=4000
       - BACKEND_URL=http://backend:4000
     depends_on:
       - backend
