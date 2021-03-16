@@ -1,0 +1,6 @@
+# MongoDB data
+data/
+
+# Builds
+backend/
+frontend/

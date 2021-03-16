@@ -1,0 +1,53 @@
+version: "3.8"
+services:
+  frontend:
+    build: walmart-challenge-front
+    ports:
+      - 3000:3000
+    stdin_open: true
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    container_name: frontend
+    restart: always
+    networks:
+      - nextjs-express
+    environment: 
+      - NODE_PORT=4000
+      - BACKEND_URL=http://backend:4000
+    depends_on:
+      - backend
+
+  backend:
+    container_name: backend
+    restart: always
+    build: 
+      context: walmart-challenge-back
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+    networks:
+      - express-mongo
+      - nextjs-express
+    environment: 
+      - NODE_PORT=4000
+      - MONGO_URL=mongodb://mongo:27017/walmart
+    ports: 
+      - 4000:4000
+
+  mongo:
+    container_name: mongo
+    restart: always
+    image: mongo:4.2.0
+    volumes:
+      - ./data:/data/db
+    networks:
+      - express-mongo
+    ports:
+      - 27017:27017
+
+networks:
+  nextjs-express:
+  express-mongo:
